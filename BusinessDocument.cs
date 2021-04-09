@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace SYN001
@@ -73,6 +70,7 @@ namespace SYN001
 
     public class SYN001
     {
+        [XmlElement(Namespace = "")]
         public IRSync IRSync { get; set; }
     }
 
@@ -92,7 +90,31 @@ namespace SYN001
 
     public class CentralServicesNode
     {
-        
+        public string officialID { get; set; }
+        public List<EbmsSignatureCertificate> EbmsSignatureCertificates { get; set; }
+        public SystemMessageEndpoint SystemMessageEndpoint { get; set; }
+        public List<TlsCertificate> TLSCertificates { get; set; }
+    }
+
+    public class EbmsSignatureCertificate
+    {
+        public CertificateIdentification CertificateIdentification { get; set; }
+    }
+
+    public class CertificateIdentification
+    {
+        public string thumbprint { get; set; }
+    }
+
+    public class SystemMessageEndpoint
+    {
+        public string channel { get; set; }
+        public string messageExchangePattern { get; set; }
+    }
+
+    public class TlsCertificate
+    {
+        public CertificateIdentification CertificateIdentification { get; set; }
     }
 
     public class Institution
