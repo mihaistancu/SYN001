@@ -28,6 +28,7 @@ namespace SYN001
         public Participant Sender { get; set; }
         public Participant Receiver { get; set; }
         public DocumentIdentification DocumentIdentification { get; set; }
+        public BusinessScope BusinessScope { get; set; }
     }
 
     [XmlType(Namespace = Namespaces.Sbdh)]
@@ -54,5 +55,18 @@ namespace SYN001
         public string Type { get; set; }
         public string InstanceIdentifier { get; set; }
         public string TypeVersion { get; set; }
+    }
+
+    public class BusinessScope
+    {
+        public string DocumentVersion { get; set; }
+        public string SetId { get; set; }
+        public CaseId CaseId { get; set; }
+    }
+
+    public class CaseId
+    {
+        public string InstanceIdentifier { get; set; }
+        public string BusinessServiceName { get; set; }
     }
 }
