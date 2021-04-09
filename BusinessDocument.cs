@@ -11,6 +11,7 @@ namespace SYN001
     {
         public const string Sbdh = "http://eessi.dgempl.ec.europa.eu/namespaces/sbdh";
         public const string Xsi = "http://www.w3.org/2001/XMLSchema-instance";
+        public const string Sed = "http://ec.europa.eu/eessi/ns/4_2/SYN001";
     }
     
     [XmlRoot(Namespace = Namespaces.Sbdh)]
@@ -19,9 +20,11 @@ namespace SYN001
         [XmlAttribute(Namespace = Namespaces.Xsi)]
         public string schemaLocation { get; set; }
         public StandardBusinessDocumentHeader StandardBusinessDocumentHeader { get; set; }
+        
+        [XmlElement(Namespace = Namespaces.Sed)]
+        public SYN001 SYN001 { get; set; }
     }
-
-    [XmlType(Namespace = Namespaces.Sbdh)]
+        
     public class StandardBusinessDocumentHeader
     {
         public string HeaderVersion { get; set; }
@@ -30,15 +33,13 @@ namespace SYN001
         public DocumentIdentification DocumentIdentification { get; set; }
         public BusinessScope BusinessScope { get; set; }
     }
-
-    [XmlType(Namespace = Namespaces.Sbdh)]
+        
     public class Participant
     {
         public string ContactTypeIdentifier { get; set; }
         public Identifier Identifier { get; set; }
     }
-
-    [XmlType(Namespace = Namespaces.Sbdh)]
+        
     public class Identifier
     {
         [XmlAttribute]
@@ -68,5 +69,44 @@ namespace SYN001
     {
         public string InstanceIdentifier { get; set; }
         public string BusinessServiceName { get; set; }
+    }
+
+    public class SYN001
+    {
+        public IRSync IRSync { get; set; }
+    }
+
+    public class IRSync
+    {
+        public string version { get; set; }
+        public InstitutionRepository InstitutionRepository { get; set; }
+    }
+
+    public class InstitutionRepository
+    {
+        public CentralServicesNode CentralServicesNode { get; set; }
+        public List<Institution> Institutions { get; set; }
+        public List<AccessPoint> AccessPoints { get; set; }
+        public List<Certificate> Certificates { get; set; }
+    }
+
+    public class CentralServicesNode
+    {
+        
+    }
+
+    public class Institution
+    {
+
+    }
+
+    public class AccessPoint
+    {
+
+    }
+
+    public class Certificate
+    {
+
     }
 }
