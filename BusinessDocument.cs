@@ -27,6 +27,7 @@ namespace SYN001
         public string HeaderVersion { get; set; }
         public Participant Sender { get; set; }
         public Participant Receiver { get; set; }
+        public DocumentIdentification DocumentIdentification { get; set; }
     }
 
     [XmlType(Namespace = Namespaces.Sbdh)]
@@ -46,4 +47,12 @@ namespace SYN001
         public string Value { get; set; }
     }
 
+    public class DocumentIdentification
+    {
+        public DateTime CreationDateAndTime { get; set; }
+        public string CaseAction { get; set; }
+        public string Type { get; set; }
+        public string InstanceIdentifier { get; set; }
+        public string TypeVersion { get; set; }
+    }
 }
