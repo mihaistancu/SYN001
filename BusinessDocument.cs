@@ -92,11 +92,16 @@ namespace SYN001
     {
         public string officialID { get; set; }
         public List<EbmsSignatureCertificate> EbmsSignatureCertificates { get; set; }
-        public SystemMessageEndpoint SystemMessageEndpoint { get; set; }
+        public MessageEndpoint SystemMessageEndpoint { get; set; }
         public List<TlsCertificate> TLSCertificates { get; set; }
     }
 
     public class EbmsSignatureCertificate
+    {
+        public CertificateIdentification CertificateIdentification { get; set; }
+    }
+
+    public class BusinessSignatureCertificate
     {
         public CertificateIdentification CertificateIdentification { get; set; }
     }
@@ -106,7 +111,7 @@ namespace SYN001
         public string thumbprint { get; set; }
     }
 
-    public class SystemMessageEndpoint
+    public class MessageEndpoint
     {
         public string channel { get; set; }
         public string messageExchangePattern { get; set; }
@@ -119,7 +124,103 @@ namespace SYN001
 
     public class Institution
     {
+        public string officialID { get; set; }
+        public string cLDId { get; set; }
+        public CountryCode countryCode { get; set; }
+        public Indicator isPublicIndicator { get; set; }
+        public Indicator isLiaisonBodyIndicator { get; set; }
+        public List<Translation> Name { get; set; }
+        public ValidityPeriod ValidityPeriod { get; set; }
+        public List<PostalAddress> PostalAddresses { get; set; }
+        public ContactInfo ContactInfo { get; set; }
+        public List<Competence> Competences { get; set; }
+        public List<EbmsSignatureCertificate> EbmsSignatureCertificates { get; set; }
+        public List<BusinessSignatureCertificate> BusinessSignatureCertificates { get; set; }
+        public MessageEndpoint BusinessMessageEndpoint { get; set; }
+        public MessageEndpoint SystemMessageEndpoint { get; set; }
+        public List<TlsCertificate> TLSCertificates { get; set; }
+    }
 
+    public class CountryCode
+    {
+        public string value { get; set; }
+    }
+
+    public class Indicator
+    {
+        public int value { get; set; }
+    }
+
+    public class Translation
+    {
+        public string languageCode { get; set; }
+        public string text { get; set; }
+    }
+
+    public class ValidityPeriod
+    {
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
+    }
+
+    public class PostalAddress
+    {
+        public string zIPCode { get; set; }
+        public bool isVisitorAddress { get; set; }
+        public Street Street { get; set; }
+        public Town Town { get; set; }
+    }
+
+    public class Street
+    {
+        public Translation Translation { get; set; }
+    }
+
+    public class Town
+    {
+        public Translation Translation { get; set; }
+    }
+
+    public class ContactInfo
+    {
+        public List<URL> URLs { get; set; }
+        public List<EmailAddress> EmailAddresses { get; set; }
+        public List<FaxNumber> FaxNumbers { get; set; }
+        public List<PhoneNumber> PhoneNumbers { get; set; }
+    }
+
+    public class URL
+    {
+        public string uRL { get; set; }
+    }
+
+    public class EmailAddress
+    {
+        public string emailAddress { get; set; }
+    }
+
+    public class FaxNumber
+    {
+        public string faxNumber { get; set; }
+    }
+
+    public class PhoneNumber
+    {
+        public string phoneNumber { get; set; }
+    }
+
+    public class Competence
+    {
+        public string id { get; set; }
+        public string applicationRole { get; set; }
+        public ValidityPeriod ValidityPeriod { get; set; }
+        public BUCType BUCType { get; set; }
+        public bool isEESSIReady { get; set; }
+    }
+
+    public class BUCType
+    {
+        public string name { get; set; }
     }
 
     public class AccessPoint
