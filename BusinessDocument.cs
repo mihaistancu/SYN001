@@ -177,8 +177,8 @@ namespace SYN001
 
     public class ValidityPeriod
     {
-        public DateTime start { get; set; }
-        public DateTime end { get; set; }
+        public DateTime? start { get; set; }
+        public DateTime? end { get; set; }
     }
 
     public class PostalAddress
