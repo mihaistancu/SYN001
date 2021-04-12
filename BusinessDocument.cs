@@ -136,9 +136,10 @@ namespace SYN001
     {
         public string officialID { get; set; }
         public string cLDId { get; set; }
-        public CountryCode countryCode { get; set; }
-        public Indicator isPublicIndicator { get; set; }
-        public Indicator isLiaisonBodyIndicator { get; set; }
+        public Value countryCode { get; set; }
+        public Value isPublicIndicator { get; set; }
+        public Value isLiaisonBodyIndicator { get; set; }
+        public List<Relation> Relations { get; set; }
         public List<Translation> Name { get; set; }
         public ValidityPeriod ValidityPeriod { get; set; }
         public List<PostalAddress> PostalAddresses { get; set; }
@@ -151,14 +152,21 @@ namespace SYN001
         public List<TlsCertificate> TLSCertificates { get; set; }
     }
 
-    public class CountryCode
+    public class Value
     {
         public string value { get; set; }
     }
 
-    public class Indicator
+    public class Relation
     {
-        public int value { get; set; }
+        public InstitutionIdentification InstitutionIdentification { get; set; }
+        public Value relation { get; set; }
+    }
+
+    public class InstitutionIdentification
+    {
+        public string officialID { get; set; }
+        public Value countryCode { get; set; }
     }
 
     public class Translation
@@ -236,7 +244,7 @@ namespace SYN001
     public class AccessPoint
     {
         public string officialID { get; set; }
-        public CountryCode countryCode { get; set; }
+        public Value countryCode { get; set; }
         public List<Translation> Name { get; set; }
         public ContactDetails ContactDetails { get; set; }
         public List<PostalAddress> PostalAddresses { get; set; }
@@ -256,12 +264,18 @@ namespace SYN001
 
     public class LinkedInstitution
     {
-        public Institution Institution { get; set; }
+        public InstitutionIdentification Institution { get; set; }
         public ValidityPeriod ValidityPeriod { get; set; }
     }
 
     public class Certificate
     {
-
+        public string serialNumber { get; set; }
+        public string subject { get; set; }
+        public string issuer { get; set; }
+        public DateTime validFrom { get; set; }
+        public DateTime validTo { get; set; }
+        public string thumbprint { get; set; }
+        public byte[] publicKey { get; set; }
     }
 }
