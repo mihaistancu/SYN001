@@ -1,5 +1,4 @@
 ﻿using Bogus;
-using System;
 using System.Collections.Generic;
 
 namespace SYN001.Fakers
@@ -87,6 +86,27 @@ namespace SYN001.Fakers
                                 text = f.Address.City()
                             }
                         }
+                    }
+                };
+                ap.EbmsSignatureCertificates = new List<EbmsSignatureCertificate>
+                {
+                    new EbmsSignatureCertificate
+                    {
+                        CertificateIdentification = new CertificateIdentification()
+                    }
+                };
+                ap.InternalTLSCertificates = new List<InternalTLSCertificate>
+                {
+                    new InternalTLSCertificate
+                    {
+                        CertificateIdentification = new CertificateIdentification()
+                    }
+                };
+                ap.ExternalTLSCertificates = new List<ExternalTLSCertificate>
+                {
+                    new ExternalTLSCertificate
+                    {
+                        CertificateIdentification = new CertificateIdentification()
                     }
                 };
                 ap.ValidityPeriod = new ValidityPeriod

@@ -3,7 +3,7 @@ using System;
 
 namespace SYN001
 {
-    public class Builder
+    public class Factory
     {
         public string Sender { get; set; }
         public string Receiver { get; set; }
@@ -11,14 +11,17 @@ namespace SYN001
         public int InstitutionsPerAccessPoint { get; set; }
         public int AccessPointCount { get; set; }
         
-        public StandardBusinessDocument Build()
+        public StandardBusinessDocument Create()
         {
-            return new StandardBusinessDocument
+            var doc = new StandardBusinessDocument
             {
                 schemaLocation = GetSchemaLocation(),
                 StandardBusinessDocumentHeader = GetHeader(),
                 SYN001 = GetSed()
             };
+
+            LinkCertificates(doc);
+            return doc;
         }
 
         private string GetSchemaLocation()
@@ -79,10 +82,28 @@ namespace SYN001
                     version = Version,
                     InstitutionRepository = new InstitutionRepository
                     {
-                        AccessPoints = new AccessPointFaker().Generate(AccessPointCount)
+                        AccessPoints = new AccessPointFaker().Generate(AccessPointCount),
+                        Certificates = new CertificateFaker().Generate(AccessPointCount * 3),
                     }
                 }
             };
+        }
+    
+        private void LinkCertificates(StandardBusinessDocument doc)
+        {
+            var ir = doc.SYN001.IRSync.InstitutionRepository;
+            
+            for (int i=0; i<ir.AccessPoints.Count; i++)
+            {
+                var ebms = ir.AccessPoints[i].EbmsSignatureCertificates[0].CertificateIdentification;
+                ebms.thumbprint = ir.Certificates[i * 3].thumbprint;
+
+                var internalTls = ir.AccessPoints[i].InternalTLSCertificates[0].CertificateIdentification;
+                internalTls.thumbprint = ir.Certificates[i * 3 + 1].thumbprint;
+
+                var externalTls = ir.AccessPoints[i].ExternalTLSCertificates[0].CertificateIdentification;
+                externalTls.thumbprint = ir.Certificates[i * 3 + 2].thumbprint;
+            }
         }
     }
 }
