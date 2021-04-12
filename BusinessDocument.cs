@@ -106,6 +106,16 @@ namespace SYN001
         public CertificateIdentification CertificateIdentification { get; set; }
     }
 
+    public class InternalTLSCertificate
+    {
+        public CertificateIdentification CertificateIdentification { get; set; }
+    }
+
+    public class ExternalTLSCertificate
+    {
+        public CertificateIdentification CertificateIdentification { get; set; }
+    }
+
     public class CertificateIdentification
     {
         public string thumbprint { get; set; }
@@ -225,7 +235,29 @@ namespace SYN001
 
     public class AccessPoint
     {
+        public string officialID { get; set; }
+        public CountryCode countryCode { get; set; }
+        public List<Translation> Name { get; set; }
+        public ContactDetails ContactDetails { get; set; }
+        public List<PostalAddress> PostalAddresses { get; set; }
+        public ValidityPeriod ValidityPeriod { get; set; }
+        public List<LinkedInstitution> LinkedInstitutions { get; set; }
+        public List<EbmsSignatureCertificate> EbmsSignatureCertificates { get; set; }
+        public List<InternalTLSCertificate> InternalTLSCertificates { get; set; }
+        public List<ExternalTLSCertificate> ExternalTLSCertificates { get; set; }
+        public MessageEndpoint SystemMessageEndpoint { get; set; }
+        public MessageEndpoint BusinessMessageEndpoint { get; set; }
+    }
 
+    public class ContactDetails 
+    {
+        public ContactInfo ContactInfo { get; set; }
+    }
+
+    public class LinkedInstitution
+    {
+        public Institution Institution { get; set; }
+        public ValidityPeriod ValidityPeriod { get; set; }
     }
 
     public class Certificate
