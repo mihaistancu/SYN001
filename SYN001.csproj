@@ -52,6 +52,7 @@
     <Compile Include="Factories\CertificateFactory.cs" />
     <Compile Include="Factories\InstitutionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
