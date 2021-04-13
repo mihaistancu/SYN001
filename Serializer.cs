@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace SYN001.Tests
+namespace SYN001
 {
     class Serializer
     {
