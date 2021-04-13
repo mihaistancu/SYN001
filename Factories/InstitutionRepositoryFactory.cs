@@ -9,6 +9,13 @@
         public InstitutionFactory InstitutionFactory { get; set; }
         public CertificateFactory CertificateFactory { get; set; }
 
+        public InstitutionRepositoryFactory()
+        {
+            AccessPointFactory = new AccessPointFactory();
+            InstitutionFactory = new InstitutionFactory();
+            CertificateFactory = new CertificateFactory();
+        }
+
         public InstitutionRepository Create()
         {
             var institutionCount = AccessPointCount * InstitutionsPerAccessPoint;

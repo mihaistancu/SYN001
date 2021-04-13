@@ -7,7 +7,13 @@ namespace SYN001.Factories
         public string Sender { get; set; }
         public string Receiver { get; set; }
         public string Version { get; set; }
+
         public InstitutionRepositoryFactory InstitutionRepositoryFactory { get; set; }
+
+        public StandardBusinessDocumentFactory()
+        {
+            InstitutionRepositoryFactory = new InstitutionRepositoryFactory();
+        }
 
         public StandardBusinessDocument Create()
         {

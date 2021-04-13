@@ -5,10 +5,11 @@ namespace SYN001.Factories
 {
     public class AccessPointFactory
     {
-        Faker<AccessPoint> faker = new Faker<AccessPoint>();
+        Faker<AccessPoint> faker;
         
         public AccessPointFactory()
         {
+            faker = new Faker<AccessPoint>();
             faker.Rules((f, ap) =>
             {
                 var countryCode = f.Address.CountryCode();

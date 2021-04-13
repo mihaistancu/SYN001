@@ -5,10 +5,11 @@ namespace SYN001.Factories
 {
     public class CertificateFactory
     {
-        Faker<Certificate> faker = new Faker<Certificate>();
+        Faker<Certificate> faker;
 
         public CertificateFactory()
         {
+            faker = new Faker<Certificate>();
             faker.Rules((f, cert) =>
             {
                 cert.serialNumber = f.Random.Hash();

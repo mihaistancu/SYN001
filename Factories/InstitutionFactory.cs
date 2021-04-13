@@ -8,10 +8,12 @@ namespace SYN001.Factories
         public int CompetencesPerInstitution { get; set; }
         public CompetenceFactory CompetenceFactory { get; set; }
 
-        Faker<Institution> faker = new Faker<Institution>();
+        readonly Faker<Institution> faker;
 
         public InstitutionFactory()
         {
+            CompetenceFactory = new CompetenceFactory();
+            faker = new Faker<Institution>();
             faker.Rules((f, institution) =>
             {
                 var countryCode = f.Address.CountryCode();

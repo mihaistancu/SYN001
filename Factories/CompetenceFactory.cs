@@ -5,10 +5,11 @@ namespace SYN001.Factories
 {
     public class CompetenceFactory
     {
-        Faker<Competence> faker = new Faker<Competence>();
+        Faker<Competence> faker;
 
         public CompetenceFactory()
         {
+            faker = new Faker<Competence>();
             faker.Rules((f, competence) =>
             {
                 competence.id = f.Random.AlphaNumeric(7);
