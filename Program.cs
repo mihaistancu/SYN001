@@ -34,7 +34,7 @@ namespace SYN001
 
                 if (o.CsnEbmsCertPath != null)
                 {
-                    Replace(document.SYN001.IRSync.InstitutionRepository.CentralServicesNode.EbmsSignatureCertificates[0].CertificateIdentification, o.CsnEbmsCertPath);
+                    Replace(document.SYN001.IRSync.InstitutionRepository.CentralServicesNode.EbMSSignatureCertificates[0].CertificateIdentification, o.CsnEbmsCertPath);
                 }
 
                 if (o.CsnTlsCertPath != null)
@@ -44,7 +44,7 @@ namespace SYN001
 
                 if (o.ApEbmsCertPath != null)
                 {
-                    Replace(document.SYN001.IRSync.InstitutionRepository.AccessPoints[0].EbmsSignatureCertificates[0].CertificateIdentification, o.ApEbmsCertPath);
+                    Replace(document.SYN001.IRSync.InstitutionRepository.AccessPoints[0].EbMSSignatureCertificates[0].CertificateIdentification, o.ApEbmsCertPath);
                 }
 
                 if (o.ApIntTlsCertPath != null)
@@ -59,14 +59,9 @@ namespace SYN001
 
                 if (o.InstEbmsCertPath != null)
                 {
-                    Replace(document.SYN001.IRSync.InstitutionRepository.Institutions[0].EbmsSignatureCertificates[0].CertificateIdentification, o.InstEbmsCertPath);
+                    Replace(document.SYN001.IRSync.InstitutionRepository.Institutions[0].EbMSSignatureCertificates[0].CertificateIdentification, o.InstEbmsCertPath);
                 }
-
-                if (o.InstTlsCertPath != null)
-                {
-                    Replace(document.SYN001.IRSync.InstitutionRepository.Institutions[0].TLSCertificates[0].CertificateIdentification, o.InstTlsCertPath);
-                }
-
+                
                 if (o.InstBusinessCertPath != null)
                 {
                     Replace(document.SYN001.IRSync.InstitutionRepository.Institutions[0].BusinessSignatureCertificates[0].CertificateIdentification, o.InstBusinessCertPath);

@@ -7,7 +7,7 @@ namespace SYN001.Factories
     {
         public int CompetencesPerInstitution { get; set; }
         public CompetenceFactory CompetenceFactory { get; set; }
-
+        
         readonly Faker<Institution> faker;
 
         public InstitutionFactory()
@@ -16,7 +16,7 @@ namespace SYN001.Factories
             faker = new Faker<Institution>();
             faker.Rules((f, institution) =>
             {
-                var countryCode = f.Address.CountryCode();
+                var countryCode = f.Random.ListItem(Constraints.Countries);
                 var languageCode = f.Random.RandomLocale().Substring(0, 2);
 
                 institution.officialID = $"{countryCode}:{f.Random.AlphaNumeric(10)}";
@@ -106,9 +106,9 @@ namespace SYN001.Factories
                     }
                 };
                 institution.Competences = CompetenceFactory.Create(CompetencesPerInstitution);
-                institution.EbmsSignatureCertificates = new List<EbmsSignatureCertificate>
+                institution.EbMSSignatureCertificates = new List<EbMSSignatureCertificate>
                 {
-                    new EbmsSignatureCertificate
+                    new EbMSSignatureCertificate
                     {
                         CertificateIdentification = new CertificateIdentification()
                     }

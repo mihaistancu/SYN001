@@ -55,9 +55,6 @@ namespace SYN001
             public string ApEbmsCertPath { get; set; }
 
             [Option(Required = false)]
-            public string InstTlsCertPath { get; set; }
-
-            [Option(Required = false)]
             public string InstEbmsCertPath { get; set; }
 
             [Option(Required = false)]

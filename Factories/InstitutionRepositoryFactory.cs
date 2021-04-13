@@ -61,7 +61,7 @@
         {
             for (int i = 0; i < ir.AccessPoints.Count; i++)
             {
-                var ebms = ir.AccessPoints[i].EbmsSignatureCertificates[0].CertificateIdentification;
+                var ebms = ir.AccessPoints[i].EbMSSignatureCertificates[0].CertificateIdentification;
                 ebms.thumbprint = ir.Certificates[i * 3].thumbprint;
 
                 var internalTls = ir.AccessPoints[i].InternalTLSCertificates[0].CertificateIdentification;
@@ -76,7 +76,7 @@
         {
             for (int i = 0; i < ir.Institutions.Count; i++)
             {
-                var ebms = ir.Institutions[i].EbmsSignatureCertificates[0].CertificateIdentification;
+                var ebms = ir.Institutions[i].EbMSSignatureCertificates[0].CertificateIdentification;
                 ebms.thumbprint = ir.Certificates[ir.AccessPoints.Count * 3 + i * 2].thumbprint;
 
                 var business = ir.Institutions[i].BusinessSignatureCertificates[0].CertificateIdentification;
@@ -86,7 +86,7 @@
 
         private void LinkCentralServicesNodeCertificates(InstitutionRepository ir) 
         { 
-            var ebms = ir.CentralServicesNode.EbmsSignatureCertificates[0].CertificateIdentification;
+            var ebms = ir.CentralServicesNode.EbMSSignatureCertificates[0].CertificateIdentification;
             ebms.thumbprint = ir.Certificates[ir.AccessPoints.Count * 3 + ir.Institutions.Count * 2].thumbprint;
 
             var tls = ir.CentralServicesNode.TLSCertificates[0].CertificateIdentification;

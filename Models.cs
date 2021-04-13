@@ -11,6 +11,12 @@ namespace SYN001
         public const string Sed = "http://ec.europa.eu/eessi/ns/4_2/SYN001";
     }
     
+    public static class Constraints
+    {
+        public static string[] Countries = "AT|BE|BG|HR|CY|CZ|DK|EE|FI|FR|DE|EL|HU|IS|IE|IT|LV|LI|LT|LU|MT|NL|NO|PL|PT|RO|SK|SI|ES|SE|CH|UK".Split('|');
+        public static string[] Roles = "CaseOwner|CounterParty|IntelligentRA".Split('|');
+    }
+
     [XmlRoot(Namespace = Namespaces.Sbdh)]
     public class StandardBusinessDocument
     {
@@ -33,8 +39,8 @@ namespace SYN001
         
     public class Participant
     {
-        public string ContactTypeIdentifier { get; set; }
         public Identifier Identifier { get; set; }
+        public string ContactTypeIdentifier { get; set; }
     }
         
     public class Identifier
@@ -91,12 +97,12 @@ namespace SYN001
     public class CentralServicesNode
     {
         public string officialID { get; set; }
-        public List<EbmsSignatureCertificate> EbmsSignatureCertificates { get; set; }
+        public List<EbMSSignatureCertificate> EbMSSignatureCertificates { get; set; }
         public MessageEndpoint SystemMessageEndpoint { get; set; }
-        public List<TlsCertificate> TLSCertificates { get; set; }
+        public List<TLSCertificate> TLSCertificates { get; set; }
     }
 
-    public class EbmsSignatureCertificate
+    public class EbMSSignatureCertificate
     {
         public CertificateIdentification CertificateIdentification { get; set; }
     }
@@ -127,7 +133,7 @@ namespace SYN001
         public string messageExchangePattern { get; set; }
     }
 
-    public class TlsCertificate
+    public class TLSCertificate
     {
         public CertificateIdentification CertificateIdentification { get; set; }
     }
@@ -145,11 +151,10 @@ namespace SYN001
         public List<PostalAddress> PostalAddresses { get; set; }
         public ContactInfo ContactInfo { get; set; }
         public List<Competence> Competences { get; set; }
-        public List<EbmsSignatureCertificate> EbmsSignatureCertificates { get; set; }
+        public List<EbMSSignatureCertificate> EbMSSignatureCertificates { get; set; }
         public List<BusinessSignatureCertificate> BusinessSignatureCertificates { get; set; }
         public MessageEndpoint BusinessMessageEndpoint { get; set; }
         public MessageEndpoint SystemMessageEndpoint { get; set; }
-        public List<TlsCertificate> TLSCertificates { get; set; }
     }
 
     public class Value
@@ -249,9 +254,9 @@ namespace SYN001
         public List<PostalAddress> PostalAddresses { get; set; }
         public ValidityPeriod ValidityPeriod { get; set; }
         public List<LinkedInstitution> LinkedInstitutions { get; set; }
-        public List<EbmsSignatureCertificate> EbmsSignatureCertificates { get; set; }
-        public List<InternalTLSCertificate> InternalTLSCertificates { get; set; }
+        public List<EbMSSignatureCertificate> EbMSSignatureCertificates { get; set; }
         public List<ExternalTLSCertificate> ExternalTLSCertificates { get; set; }
+        public List<InternalTLSCertificate> InternalTLSCertificates { get; set; }
         public MessageEndpoint SystemMessageEndpoint { get; set; }
         public MessageEndpoint BusinessMessageEndpoint { get; set; }
     }

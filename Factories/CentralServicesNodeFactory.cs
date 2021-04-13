@@ -9,9 +9,9 @@ namespace SYN001.Factories
             return new CentralServicesNode
             {
                 officialID = "EU:CSN01",
-                EbmsSignatureCertificates = new List<EbmsSignatureCertificate>
+                EbMSSignatureCertificates = new List<EbMSSignatureCertificate>
                 {
-                    new EbmsSignatureCertificate
+                    new EbMSSignatureCertificate
                     {
                         CertificateIdentification = new CertificateIdentification
                         {
@@ -24,9 +24,9 @@ namespace SYN001.Factories
                     channel = "https://csn.eu/",
                     messageExchangePattern = "push"
                 },
-                TLSCertificates = new List<TlsCertificate>
+                TLSCertificates = new List<TLSCertificate>
                 {
-                    new TlsCertificate
+                    new TLSCertificate
                     {
                         CertificateIdentification = new CertificateIdentification
                         {

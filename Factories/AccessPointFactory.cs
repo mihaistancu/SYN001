@@ -6,13 +6,13 @@ namespace SYN001.Factories
     public class AccessPointFactory
     {
         Faker<AccessPoint> faker;
-        
+
         public AccessPointFactory()
         {
             faker = new Faker<AccessPoint>();
             faker.Rules((f, ap) =>
             {
-                var countryCode = f.Address.CountryCode();
+                var countryCode = f.Random.ListItem(Constraints.Countries);
                 var languageCode = f.Random.RandomLocale().Substring(0, 2);
                 var name = $"AP{countryCode}{f.Random.Number(99):D2}";
 
@@ -92,9 +92,9 @@ namespace SYN001.Factories
                     }
                 };
                 ap.LinkedInstitutions = new List<LinkedInstitution>();
-                ap.EbmsSignatureCertificates = new List<EbmsSignatureCertificate>
+                ap.EbMSSignatureCertificates = new List<EbMSSignatureCertificate>
                 {
-                    new EbmsSignatureCertificate
+                    new EbMSSignatureCertificate
                     {
                         CertificateIdentification = new CertificateIdentification()
                     }

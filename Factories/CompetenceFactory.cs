@@ -13,7 +13,7 @@ namespace SYN001.Factories
             faker.Rules((f, competence) =>
             {
                 competence.id = f.Random.AlphaNumeric(7);
-                competence.applicationRole = f.Random.ListItem(new List<string> {"CaseOwner", "CounterParty", "IntelligentRA"});
+                competence.applicationRole = f.Random.ListItem(Constraints.Roles);
                 competence.ValidityPeriod = new ValidityPeriod
                 {
                     start = f.Date.Past().ToUniversalTime().Date
