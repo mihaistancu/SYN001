@@ -5,6 +5,9 @@ namespace SYN001.Factories
 {
     public class InstitutionFactory : Faker<Institution>
     {
+        public int CompetencesPerInstitution { get; set; }
+        public CompetenceFactory CompetenceFactory { get; set; }
+
         Faker<Institution> faker = new Faker<Institution>();
 
         public InstitutionFactory()
@@ -100,6 +103,7 @@ namespace SYN001.Factories
                         }
                     }
                 };
+                institution.Competences = CompetenceFactory.Create(CompetencesPerInstitution);
                 institution.EbmsSignatureCertificates = new List<EbmsSignatureCertificate>
                 {
                     new EbmsSignatureCertificate

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\CompetenceFactory.cs" />
     <Compile Include="Factories\InstitutionRepositoryFactory.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="Factories\StandardBusinessDocumentFactory.cs" />
