@@ -1,18 +1,20 @@
 ﻿using Bogus;
 using System.Collections.Generic;
 
-namespace SYN001.Fakers
+namespace SYN001.Factories
 {
-    public class AccessPointFaker: Faker<AccessPoint>
+    public class AccessPointFactory
     {
-        public AccessPointFaker()
+        Faker<AccessPoint> faker = new Faker<AccessPoint>();
+        
+        public AccessPointFactory()
         {
-            Rules((f, ap) =>
+            faker.Rules((f, ap) =>
             {
                 var countryCode = f.Address.CountryCode();
                 var languageCode = f.Random.RandomLocale().Substring(0, 2);
                 var name = $"AP{countryCode}{f.Random.Number(99):D2}";
-                
+
                 ap.officialID = $"{countryCode}:{name}";
                 ap.countryCode = new Value
                 {
@@ -125,6 +127,11 @@ namespace SYN001.Fakers
                     messageExchangePattern = "push"
                 };
             });
+        }
+    
+        public List<AccessPoint> Create(int count)
+        {
+            return faker.Generate(count);
         }
     }
 }

@@ -1,13 +1,15 @@
 ﻿using Bogus;
 using System.Collections.Generic;
 
-namespace SYN001.Fakers
+namespace SYN001.Factories
 {
-    public class InstitutionFaker: Faker<Institution>
+    public class InstitutionFactory : Faker<Institution>
     {
-        public InstitutionFaker()
+        Faker<Institution> faker = new Faker<Institution>();
+
+        public InstitutionFactory()
         {
-            Rules((f, institution) =>
+            faker.Rules((f, institution) =>
             {
                 var countryCode = f.Address.CountryCode();
                 var languageCode = f.Random.RandomLocale().Substring(0, 2);
@@ -123,6 +125,11 @@ namespace SYN001.Fakers
                     messageExchangePattern = "pull"
                 };
             });
+        }
+
+        public List<Institution> Create(int count)
+        {
+            return faker.Generate(count);
         }
     }
 }

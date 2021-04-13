@@ -44,11 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessDocument.cs" />
-    <Compile Include="Factory.cs" />
-    <Compile Include="Fakers\AccessPointFaker.cs" />
-    <Compile Include="Fakers\CertificateFaker.cs" />
-    <Compile Include="Fakers\InstitutionFaker.cs" />
+    <Compile Include="Factories\InstitutionRepositoryFactory.cs" />
+    <Compile Include="Models.cs" />
+    <Compile Include="Factories\StandardBusinessDocumentFactory.cs" />
+    <Compile Include="Factories\AccessPointFactory.cs" />
+    <Compile Include="Factories\CertificateFactory.cs" />
+    <Compile Include="Factories\InstitutionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
