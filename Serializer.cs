@@ -8,9 +8,9 @@ namespace SYN001
     {
         public static void Serialize<T>(T data, Stream output)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            var serializer = new XmlSerializer(typeof(T));
 
-            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+            var namespaces = new XmlSerializerNamespaces();
             namespaces.Add("sbdh", Namespaces.Sbdh);
             namespaces.Add("xsi", Namespaces.Xsi);
 

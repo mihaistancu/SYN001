@@ -16,7 +16,7 @@ namespace SYN001
             public int CompetencesPerInstitution { get; set; }
 
             [Option(Default = "5")]
-            public string Version { get; set; }
+            public string IRVersion { get; set; }
 
             [Option(Default = "EU:CSN01")]
             public string SenderId { get; set; }

@@ -15,14 +15,14 @@ namespace SYN001
             Parser.Default.ParseArguments<Options>(args).WithParsed(o =>
             {
                 var factory = new StandardBusinessDocumentFactory();
-                factory.Sender = o.SenderId;
-                factory.Receiver = o.ReceiverId;
-                factory.Version = o.Version;
                 factory.InstitutionRepositoryFactory.AccessPointCount = o.AccessPointCount;
                 factory.InstitutionRepositoryFactory.InstitutionsPerAccessPoint = o.InstitutionsPerAccessPoint;
                 factory.InstitutionRepositoryFactory.InstitutionFactory.CompetencesPerInstitution = o.CompetencesPerInstitution;
                 document = factory.Create();
 
+                document.StandardBusinessDocumentHeader.Sender.Identifier.Value = o.SenderId;
+                document.StandardBusinessDocumentHeader.Receiver.Identifier.Value = o.ReceiverId;
+                document.SYN001.IRSync.version = o.IRVersion;
                 document.SYN001.IRSync.InstitutionRepository.CentralServicesNode.officialID = o.CsnId;
                 document.SYN001.IRSync.InstitutionRepository.AccessPoints[0].officialID = o.ApId;
                 document.SYN001.IRSync.InstitutionRepository.AccessPoints[0].LinkedInstitutions[0].Institution.officialID = o.InstId;

@@ -4,10 +4,6 @@ namespace SYN001.Factories
 {
     public class StandardBusinessDocumentFactory
     {
-        public string Sender { get; set; }
-        public string Receiver { get; set; }
-        public string Version { get; set; }
-
         public InstitutionRepositoryFactory InstitutionRepositoryFactory { get; set; }
 
         public StandardBusinessDocumentFactory()
@@ -41,7 +37,7 @@ namespace SYN001.Factories
                     Identifier = new Identifier
                     {
                         Authority = "urn:eu:europa:ec:dgempl:eessi:ir",
-                        Value = Sender
+                        Value = "sender"
                     }
                 },
                 Receiver = new Participant
@@ -50,7 +46,7 @@ namespace SYN001.Factories
                     Identifier = new Identifier
                     {
                         Authority = "urn:eu:europa:ec:dgempl:eessi:ir",
-                        Value = Receiver
+                        Value = "receiver"
                     }
                 },
                 DocumentIdentification = new DocumentIdentification
@@ -80,7 +76,7 @@ namespace SYN001.Factories
             {
                 IRSync = new IRSync
                 {
-                    version = Version,
+                    version = "1",
                     InstitutionRepository = InstitutionRepositoryFactory.Create()
                 }
             };
