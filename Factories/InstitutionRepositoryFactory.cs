@@ -62,10 +62,10 @@
             for (int i = 0; i < ir.Institutions.Count; i++)
             {
                 var ebms = ir.Institutions[i].EbmsSignatureCertificates[0].CertificateIdentification;
-                ebms.thumbprint = ir.Certificates[ir.AccessPoints.Count + i * 2].thumbprint;
+                ebms.thumbprint = ir.Certificates[ir.AccessPoints.Count * 3 + i * 2].thumbprint;
 
                 var business = ir.Institutions[i].BusinessSignatureCertificates[0].CertificateIdentification;
-                business.thumbprint = ir.Certificates[ir.AccessPoints.Count + i * 2 + 1].thumbprint;
+                business.thumbprint = ir.Certificates[ir.AccessPoints.Count * 3 + i * 2 + 1].thumbprint;
             }
         }
     }

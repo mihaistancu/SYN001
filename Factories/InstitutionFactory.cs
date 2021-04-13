@@ -118,12 +118,12 @@ namespace SYN001.Factories
                         CertificateIdentification = new CertificateIdentification()
                     }
                 };
-                institution.SystemMessageEndpoint = new MessageEndpoint
+                institution.BusinessMessageEndpoint = new MessageEndpoint
                 {
                     channel = f.Random.AlphaNumeric(10),
                     messageExchangePattern = "pull"
                 };
-                institution.BusinessMessageEndpoint = new MessageEndpoint
+                institution.SystemMessageEndpoint = new MessageEndpoint
                 {
                     channel = $"{f.Random.AlphaNumeric(10)}:SYSTEM",
                     messageExchangePattern = "pull"
