@@ -13,15 +13,20 @@ namespace SYN001
         
         public StandardBusinessDocument Create()
         {
-            var doc = new StandardBusinessDocument
+            var doc = GetStandardBusinessDocument();
+            LinkCertificates(doc);
+            LinkInstitutions(doc);
+            return doc;
+        }
+
+        private StandardBusinessDocument GetStandardBusinessDocument()
+        {
+            return new StandardBusinessDocument
             {
                 schemaLocation = GetSchemaLocation(),
                 StandardBusinessDocumentHeader = GetHeader(),
                 SYN001 = GetSed()
             };
-
-            LinkCertificates(doc);
-            return doc;
         }
 
         private string GetSchemaLocation()
@@ -83,7 +88,8 @@ namespace SYN001
                     InstitutionRepository = new InstitutionRepository
                     {
                         AccessPoints = new AccessPointFaker().Generate(AccessPointCount),
-                        Certificates = new CertificateFaker().Generate(AccessPointCount * 3),
+                        Institutions = new InstitutionFaker().Generate(AccessPointCount * InstitutionsPerAccessPoint),
+                        Certificates = new CertificateFaker().Generate(AccessPointCount * 3 + AccessPointCount * InstitutionsPerAccessPoint * 2),
                     }
                 }
             };
@@ -103,6 +109,36 @@ namespace SYN001
 
                 var externalTls = ir.AccessPoints[i].ExternalTLSCertificates[0].CertificateIdentification;
                 externalTls.thumbprint = ir.Certificates[i * 3 + 2].thumbprint;
+            }
+
+            for (int i = 0; i < ir.Institutions.Count; i++)
+            {
+                var ebms = ir.Institutions[i].EbmsSignatureCertificates[0].CertificateIdentification;
+                ebms.thumbprint = ir.Certificates[ir.AccessPoints.Count + i * 2].thumbprint;
+
+                var business = ir.Institutions[i].BusinessSignatureCertificates[0].CertificateIdentification;
+                business.thumbprint = ir.Certificates[ir.AccessPoints.Count + i * 2 + 1].thumbprint;
+            }
+        }
+
+        private void LinkInstitutions(StandardBusinessDocument doc)
+        {
+            var ir = doc.SYN001.IRSync.InstitutionRepository;
+
+            for (int i = 0; i < ir.AccessPoints.Count; i++)
+            {
+                for (int j = 0; j < InstitutionsPerAccessPoint; j++)
+                {
+                    ir.AccessPoints[i].LinkedInstitutions.Add(
+                        new LinkedInstitution
+                        {
+                            Institution = new InstitutionIdentification
+                            {
+                                officialID = ir.Institutions[i * InstitutionsPerAccessPoint + j].officialID,
+                                countryCode = ir.Institutions[i * InstitutionsPerAccessPoint + j].countryCode
+                            }
+                        });
+                }
             }
         }
     }

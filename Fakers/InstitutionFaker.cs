@@ -3,22 +3,31 @@ using System.Collections.Generic;
 
 namespace SYN001.Fakers
 {
-    public class AccessPointFaker: Faker<AccessPoint>
+    public class InstitutionFaker: Faker<Institution>
     {
-        public AccessPointFaker()
+        public InstitutionFaker()
         {
-            Rules((f, ap) =>
+            Rules((f, institution) =>
             {
                 var countryCode = f.Address.CountryCode();
                 var languageCode = f.Random.RandomLocale().Substring(0, 2);
-                var name = $"AP{countryCode}{f.Random.Number(99):D2}";
-                
-                ap.officialID = $"{countryCode}:{name}";
-                ap.countryCode = new Value
+
+                institution.officialID = $"{countryCode}:{f.Random.AlphaNumeric(10)}";
+                institution.cLDId = f.Company.CompanyName();
+                institution.countryCode = new Value
                 {
                     value = countryCode
                 };
-                ap.Name = new List<Translation>
+                institution.isPublicIndicator = new Value
+                {
+                    value = f.Random.Number(1).ToString()
+                };
+                institution.isLiaisonBodyIndicator = new Value
+                {
+                    value = f.Random.Number(1).ToString()
+                };
+                institution.Relations = new List<Relation>();
+                institution.Name = new List<Translation>
                 {
                     new Translation
                     {
@@ -31,41 +40,42 @@ namespace SYN001.Fakers
                         text = f.Company.CompanyName()
                     }
                 };
-                ap.ContactDetails = new ContactDetails
+                institution.ValidityPeriod = new ValidityPeriod
                 {
-                    ContactInfo = new ContactInfo
-                    {
-                        URLs = new List<URL>
+                    start = f.Date.Past().ToUniversalTime().Date
+                };
+                institution.ContactInfo = new ContactInfo
+                {
+                    URLs = new List<URL>
                         {
                             new URL
                             {
                                 uRL = f.Internet.Url()
                             }
                         },
-                        EmailAddresses = new List<EmailAddress>
+                    EmailAddresses = new List<EmailAddress>
                         {
                             new EmailAddress
                             {
                                 emailAddress = f.Internet.Email()
                             }
                         },
-                        FaxNumbers = new List<FaxNumber>
+                    FaxNumbers = new List<FaxNumber>
                         {
                             new FaxNumber
                             {
                                 faxNumber = f.Phone.PhoneNumber()
                             }
                         },
-                        PhoneNumbers = new List<PhoneNumber>
+                    PhoneNumbers = new List<PhoneNumber>
                         {
                             new PhoneNumber
                             {
                                 phoneNumber = f.Phone.PhoneNumber()
                             }
                         }
-                    }
                 };
-                ap.PostalAddresses = new List<PostalAddress>
+                institution.PostalAddresses = new List<PostalAddress>
                 {
                     new PostalAddress
                     {
@@ -88,41 +98,29 @@ namespace SYN001.Fakers
                         }
                     }
                 };
-                ap.LinkedInstitutions = new List<LinkedInstitution>();
-                ap.EbmsSignatureCertificates = new List<EbmsSignatureCertificate>
+                institution.EbmsSignatureCertificates = new List<EbmsSignatureCertificate>
                 {
                     new EbmsSignatureCertificate
                     {
                         CertificateIdentification = new CertificateIdentification()
                     }
                 };
-                ap.InternalTLSCertificates = new List<InternalTLSCertificate>
+                institution.BusinessSignatureCertificates = new List<BusinessSignatureCertificate>
                 {
-                    new InternalTLSCertificate
+                    new BusinessSignatureCertificate
                     {
                         CertificateIdentification = new CertificateIdentification()
                     }
                 };
-                ap.ExternalTLSCertificates = new List<ExternalTLSCertificate>
+                institution.SystemMessageEndpoint = new MessageEndpoint
                 {
-                    new ExternalTLSCertificate
-                    {
-                        CertificateIdentification = new CertificateIdentification()
-                    }
+                    channel = f.Random.AlphaNumeric(10),
+                    messageExchangePattern = "pull"
                 };
-                ap.ValidityPeriod = new ValidityPeriod
+                institution.BusinessMessageEndpoint = new MessageEndpoint
                 {
-                    start = f.Date.Past().ToUniversalTime().Date
-                };
-                ap.SystemMessageEndpoint = new MessageEndpoint
-                {
-                    channel = $"https://{name.ToLower()}.eessi.testa.eu/eessi/",
-                    messageExchangePattern = "push"
-                };
-                ap.BusinessMessageEndpoint = new MessageEndpoint
-                {
-                    channel = $"https://{name.ToLower()}.eessi.testa.eu/eessi/",
-                    messageExchangePattern = "push"
+                    channel = $"{f.Random.AlphaNumeric(10)}:SYSTEM",
+                    messageExchangePattern = "pull"
                 };
             });
         }

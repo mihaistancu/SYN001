@@ -48,6 +48,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="Fakers\AccessPointFaker.cs" />
     <Compile Include="Fakers\CertificateFaker.cs" />
+    <Compile Include="Fakers\InstitutionFaker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
