@@ -14,7 +14,7 @@ namespace SYN001.Factories
             {
                 var countryCode = f.Random.ListItem(Constraints.Countries);
                 var languageCode = f.Random.RandomLocale().Substring(0, 2);
-                var name = $"AP{countryCode}{f.Random.Number(99):D2}";
+                var name = $"AP{countryCode}{f.Random.AlphaNumeric(4)}";
 
                 ap.officialID = $"{countryCode}:{name}";
                 ap.countryCode = new Value
