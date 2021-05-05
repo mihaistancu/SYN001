@@ -67,7 +67,7 @@ namespace SYN001
                     Replace(document.SYN001.IRSync.InstitutionRepository.Institutions[0].BusinessSignatureCertificates[0].CertificateIdentification, o.InstBusinessCertPath);
                 }
 
-                var filename = $"SYN001-{DateTime.Now.ToString("HH-mm-ss")}";
+                var filename = $"SYN001";
                 Serializer.Serialize(document, File.Create(filename));
             });
         }
